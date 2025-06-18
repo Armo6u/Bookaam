@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Результаты поиска</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Результаты поиска</h1>
+  <div id="search-results"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q").toLowerCase();
+    const books = [
+      { title: "Война и мир", link: "book1.html" },
+      { title: "1984", link: "book2.html" },
+      { title: "Мастер и Маргарита", link: "book3.html" },
+      { title: "Преступление и наказание", link: "book4.html" },
+      { title: "Улисс", link: "book5.html" },
+      { title: "Братья Карамазовы", link: "book6.html" },
+      { title: "Великий Гэтсби", link: "book7.html" },
+      { title: "Гордость и предубеждение", link: "book8.html" },
+      { title: "Один день Ивана Денисовича", link: "book9.html" },
+      { title: "Анна Каренина", link: "book10.html" },
+      { title: "Дон Кихот", link: "book11.html" },
+      { title: "Сто лет одиночества", link: "book12.html" },
+      { title: "Портрет Дориана Грея", link: "book13.html" },
+      { title: "Лолита", link: "book14.html" },
+      { title: "Алхимик", link: "book15.html" },
+      { title: "Три товарища", link: "book16.html" },
+      { title: "Чума", link: "book17.html" },
+      { title: "Маленький принц", link: "book18.html" },
+      { title: "Шантарам", link: "book19.html" },
+      { title: "Моби Дик", link: "book20.html" }
+    ];
+
+    const resultsContainer = document.getElementById("search-results");
+    const results = books.filter(book => book.title.toLowerCase().includes(query));
+
+    if (results.length > 0) {
+      results.forEach(book => {
+        const link = document.createElement("a");
+        link.href = book.link;
+        link.textContent = book.title;
+        link.style.display = "block";
+        resultsContainer.appendChild(link);
+      });
+    } else {
+      resultsContainer.textContent = "Ничего не найдено.";
+    }
+  </script>
+</body>
+</html>
+  <style>
+    :root {
+      --bg-color: #f7f7f7;
+      --text-color: #333;
+      --header-bg: #3e64ff;
+      --card-bg: white;
+      --card-border: #e0e0e0;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode {
+      --bg-color: #1a1a1a;
+      --text-color: #f0f0f0;
+      --header-bg: #2a3a99;
+      --card-bg: #2d2d2d;
+      --card-border: #444;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: var(--header-bg);
+      padding: 20px 0;
+      text-align: center;
+      color: white;
+      box-shadow: 0 2px 10px var(--shadow-color);
+      position: relative;
+    }
+
+    .header-controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    #themeToggle {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+    }
+
+    .book-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px var(--shadow-color);
+    }
+
+    .book-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .book-title {
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+
+
+  <script>
+    // Проверяем сохранённую тему
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      document.getElementById('themeToggle').textContent = '☀️';
+    }
+
+    // Обработчик кнопки темы
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+        document.getElementById('themeToggle').textContent = '☀️';
+      } else {
+        localStorage.setItem('theme', 'light');
+        document.getElementById('themeToggle').textContent = '🌙';
+      }
+    });
+  </script>

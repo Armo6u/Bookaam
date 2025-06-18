@@ -1,0 +1,131 @@
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>1984 — Bookam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="book-page">
+    <img src="assets/book2.jpg" alt="1984">
+    <h1>1984</h1>
+    <p><strong>Автор:</strong> Джордж Оруэлл</p>
+    <p><strong>Описание:</strong> Антиутопический роман о тоталитарном обществе, где правит Партия, а Большой Брат наблюдает за каждым шагом. Главный герой, Уинстон Смит, пытается сохранить личность и память в мире, где искажают правду и уничтожают прошлое. Книга — мощное предупреждение о власти, пропаганде и потере свободы. Это одно из самых влиятельных произведений XX века.</p>
+    <a href="index.html" class="back-link">← Назад к списку</a>
+  </div>
+</body>
+</html>
+  <style>
+    :root {
+      --bg-color: #f7f7f7;
+      --text-color: #333;
+      --header-bg: #3e64ff;
+      --card-bg: white;
+      --card-border: #e0e0e0;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode {
+      --bg-color: #1a1a1a;
+      --text-color: #f0f0f0;
+      --header-bg: #2a3a99;
+      --card-bg: #2d2d2d;
+      --card-border: #444;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: var(--header-bg);
+      padding: 20px 0;
+      text-align: center;
+      color: white;
+      box-shadow: 0 2px 10px var(--shadow-color);
+      position: relative;
+    }
+
+    .header-controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    #themeToggle {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+    }
+
+    .book-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px var(--shadow-color);
+    }
+
+    .book-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .book-title {
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+
+
+  <script>
+    // Проверяем сохранённую тему
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      document.getElementById('themeToggle').textContent = '☀️';
+    }
+
+    // Обработчик кнопки темы
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      
+      if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+        document.getElementById('themeToggle').textContent = '☀️';
+      } else {
+        localStorage.setItem('theme', 'light');
+        document.getElementById('themeToggle').textContent = '🌙';
+      }
+    });
+  </script>
